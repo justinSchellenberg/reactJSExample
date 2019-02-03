@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "webpack -w --config=webpack.dev.js",
-    "start": "concurrently \"cd .. && theme watch\" \"npm run watch\"",
+    "start": "concurrently -k -n \" WATCH ,WEBPACK\" -c \"yellow.bold,red.bold\" \"cd .. && theme watch\" \"npm run watch\"",
     "test": "mocha --require @babel/register './{,!(node_modules)/**}/*.spec.js'",
     "BDD": "onchange ./**/*.js test/**/*.js -- npm test",
     "coverage": "nyc mocha --require @babel/register test/**/*",
