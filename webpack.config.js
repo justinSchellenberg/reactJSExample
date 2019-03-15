@@ -10,13 +10,15 @@ const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries");
 const isDebug = process.env.NODE_ENV !== 'production';
 const mode = `${isDebug ? "development" : "production"}`;
 
+const watchOutputDir = process.env.BETA_MODE === 'true' ? './_ASSETS' : '../assets';
+
 module.exports = {
   mode: mode,
 
   entry: {
     // BMSPolyfills: './polyfills/polyfills.js', // IF YOU REQUIRE POLYFILLS, uncomment and gt file location for more information
 
-    BMSTestModule: './builds/BMS_React_Hello_World.js', //  This one Will hot Reload css not because it has both JavaScript and Css!
+    BMSTestModule: './builds/BMSTestModule.js', //  This one Will hot Reload css not because it has both JavaScript and Css!
 
     testBuild: './builds/anothertest.scss' // This will Hot Reload in the css
   },
@@ -125,7 +127,7 @@ module.exports = {
   },
   output: {
     filename: '[name].bundle.js',
-    path: isDebug ? path.resolve(__dirname, './_ASSETS') : path.resolve(__dirname, '../assets'),
+    path: isDebug ? path.resolve(__dirname, watchOutputDir) : path.resolve(__dirname, '../assets'),
     //publicPath: isDebug ? '/' : null
   },
 

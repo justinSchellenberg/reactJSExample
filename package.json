@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "watch": "webpack -w",
-    "start": "concurrently -k -n \"WEBPACK,BMS-WATCH\" -c \"yellow.bold,blue.bold\" \"yarn watch\" \"wait-on -l ./_assets.json && cd ../ && bms-watch -h -D\"",
+    "start": "concurrently -k -n \" WATCH ,WEBPACK\" -c \"yellow.bold,blue.bold\" \"cd .. && theme open && theme watch\" \"npm run watch\"",
+    "start:v2": "cross-env BETA_MODE=true concurrently -k -n \"WEBPACK,BMS-WATCH\" -c \"yellow.bold,blue.bold\" \"yarn watch\" \"wait-on -l ./_assets.json && cd ../ && bms-watch -h -D\"",
     "test": "mocha --require @babel/register './{,!(node_modules)/**}/*.spec.js'",
     "BDD": "onchange ./**/*.js test/**/*.js -- npm test",
     "coverage": "nyc mocha --require @babel/register test/**/*",
-    "format": "prettier --write \"./**/*.ts\" \"./**/*.js\" \"./**/*.scss\"",
+    "lint": "eslint ./ ",
     "prepublish": "npx shx cp ./package.json ./package-example.json",
+    "format": "prettier --write \"./**/*.ts\" \"./**/*.js\" \"./**/*.scss\"",
     "build": "cross-env NODE_ENV=production webpack -p --progress && bmstk -c -A _assets.json -d -z"
   },
   "nyc": {
