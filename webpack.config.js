@@ -1,4 +1,5 @@
 'use strict';
+const { Entry } = require('bms-webpack-generator');
 
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -12,16 +13,15 @@ const mode = `${isDebug ? "development" : "production"}`;
 
 const watchOutputDir = process.env.BETA_MODE === 'true' ? './_ASSETS' : '../assets';
 
+const entries = new Entry(
+    ['builds',
+      //'polyfills' // IF YOU REQUIRE POLYFILLS, uncomment and gt file location for more information
+    ]);
+
 module.exports = {
   mode: mode,
 
-  entry: {
-    // BMSPolyfills: './polyfills/polyfills.js', // IF YOU REQUIRE POLYFILLS, uncomment and gt file location for more information
-
-    BMSTestModule: './builds/BMSTestModule.js', //  This one Will hot Reload css not because it has both JavaScript and Css!
-
-    testBuild: './builds/anothertest.scss' // This will Hot Reload in the css
-  },
+  entry: entries.getEntries(),
 
   module: {
     rules: [
