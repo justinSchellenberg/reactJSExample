@@ -83,7 +83,7 @@ module.exports = {
   plugins: [
     new FixStyleOnlyEntriesPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: "[name].bundle.css"
     }),
     // This Filename NEEDS to be same as within the package.json Scripts if using "wait-on" to avoid race conditions
     new AssetsPlugin({filename: '_assets.json'}),

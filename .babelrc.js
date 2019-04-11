@@ -1,4 +1,4 @@
-const isDebug = process.env.NODE_ENV !== 'production';
+const isDebug = process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'qa';
 
 let presets = [
   "@babel/preset-env"
